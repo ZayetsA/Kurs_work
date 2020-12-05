@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Index</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="https://raketaweb.ru/wp-content/themes/raketaweb/images/5bd05c447a923adabed9b2ee_logo-design20(2).png"
+             width="30" height="30"
+             class="d-inline-block align-top"
+             alt="">
+        ZayetsTests
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/welcome">Library<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/quiz">Start quiz <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">Admin panel</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container" style="padding-bottom: 40px;">
+    <div class="article">
+        <h1 style="text-align: center; margin-top: 20px;">РОБОТА З ФАЙЛАМИ</h1>
+        <div class="article_body" style="font-size: 18px; margin-top: 20px;">
+            <b>Поняття файлів і потоків</b>
+            <p>В комп’ютерній&nbsp; системі між програмою і пристроєм знаходиться щось більш загальне, ніж сам пристрій.
+                Такий узагальнений пристрій введення або виведення (пристрій більш високого рівня абстракції)
+                називається&nbsp;<strong><em>потоком</em></strong>, в той час як конкретний пристрій
+                називається&nbsp;<strong><em>файлом</em></strong>&nbsp;(файл – теж поняття абстрактне). Потоки бувають
+                двох видів: текстові і двійкові.</p>
+            <p><em>Текстовий потік</em>&nbsp;– це послідовність символів. У стандарті С вража­ється, що текстовий потік
+                організований у вигляді рядків, кожен з яких за­кін­чується символом нового рядка. Проте, в кінці
+                останнього рядка цей символ не є обов'язковим. В текстовому потоці на вимогу базового середовища можуть
+                відбуватися певні перетворення символів. Тому може і не бути однозначної відповідності між символами,
+                які пишуться (читають­ся), і тими, які зберігаються в зовнішньому пристрої. Крім того, кількість тих
+                символів, які пишуться (читаються), і тих, які зберігаються в зовні­ньому пристрої, може також не
+                співпадати із-за можливих перетворень.</p>
+            <p><em>Двійковий потік</em>&nbsp;– це послідовність байтів, яка взаємно однозначно відповідає байтам на
+                зовнішньому пристрої, причому ніякого перетворення символів не відбувається. Крім того, кількість тих
+                байтів, які пишуться (читаються), і тих, які зберігаються на зовнішньому пристрої, однакова. Однак
+                наприкінці двійкового потоку може додаватися визначена додатком кількість нульових байтів (наприклад,
+                для заповнення сектора на диску).</p>
+            <p>&nbsp;</p>
+            <p style="font-weight: bold;">Файли і функції файлової системи у мові &nbsp;С</p>
+            <p>У мові С файлом може бути все що завгодно, починаючи з дискового файлу і закінчуючи терміналом або
+                принтером. Потік пов'язують з певним файлом, виконуючи операцію відкриття.</p>
+            <p>Як тільки файл відкритий, можна проводити обмін інформацією між ним і програмою. При відкритті файлу
+                покажчик поточної позиції у файлі встанов­люється в початок. При читанні з файлу (або записі в нього)
+                кожного символу покажчик поточної позиції збільшується, забезпечуючи просування по файлу.</p>
+            <p>Файл від'єднується від певного потоку (тобто розривається зв'язок між файлом і потоком) за допомогою
+                операції закриття.</p>
+            <p>У кожного потоку, пов'язаного з файлом, є керуюча структура, яка містить інформацію про файл, вона має
+                тип&nbsp;<em>FILE</em>. У цьому блоці управління файлом ніколи нічого міняти не можна.</p>
+            <p>Для роботи з файловою системою існує заголовочний файл&nbsp;<em>&lt;stdio.h&gt;</em>. Часто
+                використовувані функції файлової системи С такі (табл. 8.1 ).</p>
+            <p>&nbsp;&nbsp; Таблиця 8.1 – Функції для роботи з файловою системою</p>
+            <table border="1" width="85%" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <th width="10%">
+                        Назва
+                    </th>
+                    <th width="513">
+                        Що робить
+                    </th>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>fopen()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Відкриває файл
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>fclose()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Закриває файл
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>putc()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Записує&nbsp; символ у файл
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>fputc()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Те саме, що і putc()
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>getc()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Читає символ з файлу
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>fgetc()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Те саме, що і getc()
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>fgets()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Читає рядок з файлу
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>fputs()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Записує&nbsp; рядок у файл
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>fseek()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Встановлює&nbsp; покажчик поточної позиції на певний байт файлу
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>ftell()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Повертає поточне значення покажчина у файлі
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>fprintf()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Для файлу те саме, що printf() для консолі
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>fscanf()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Для файлу те саме, що scanf() для консолі
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>feof()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Повертає значення true (істина), якщо досягнуто кінець файлу
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>error()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Повертає значення true, якщо виникла помилка
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>rewind()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Встановлює&nbsp; покажчик поточної позиції на початок файлу
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>remove()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Знищуєт файл
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        <strong>fflush()</strong>
+                    </td>
+                    <td class="tab" width="513">
+                        Дозапис потоку у файл
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p>Заголовок&nbsp;<em>&lt;stdio.h&gt;</em>&nbsp;надає прототипи функцій введення/виведення і визначає
+                наступні три типи:&nbsp;<em>size_t, fpos_t</em>&nbsp;і&nbsp;<em>FILE</em>.&nbsp;<em>size_t</em>&nbsp;і&nbsp;<em>fpos_t</em>&nbsp;представляють
+                собою певні різновиди такого типу, як ціле без знака. А про третій тип,&nbsp;<em>FILE</em>,
+                розповідається в наступному розділі.</p>
+            <p>Крім того, в &lt;<em>stdio.h</em>&gt; визначається декілька макросів. Серед них:</p>
+            <p>&nbsp;<em>NULL, EOF, FOPEN_MAX, SEEK_SET, SEEK_CUR</em>&nbsp;і&nbsp;<em>SEEK_END</em>.</p>
+            <p>Макрос&nbsp;<em>NULL</em>&nbsp;визначає порожній (<em>null</em>) покажчик. Макрос&nbsp;<em>EOF</em>&nbsp;часто
+                визначається як -1, &nbsp;і є значенням, що повертається тоді, коли функція введення намагається
+                виконати читання після кінця файлу.&nbsp;<em>FOPEN_MAX</em>&nbsp;– ціле значення, рівне максимальному
+                числу одночасно відкритих файлів. Інші макроси вико рис­товуються разом з&nbsp;<em>fseek()</em>, що
+                виконує операції прямого доступу до файлу.</p>
+            <p>Щоб оголосити змінну-покажчик файлу, пишуть:</p>
+            <pre>&nbsp;&nbsp;FILE *fp;</pre>
+            <p>Функція&nbsp;<strong><em>fopen</em></strong><em>()</em>&nbsp;відкриває потік і пов'язує з цим потоком
+                певний файл. Потім вона повертає покажчик цього файлу:</p>
+            <pre>FILE *<strong>fopen</strong>&nbsp;(const char *ім'я_файлу,const char *режим);</pre>
+            <p>Рядок "режим", визначає, яким чином файл буде відкритий. Рядки, подібні "<em>r+b</em>" можуть бути
+                представлені і у вигляді "<em>rb+</em>" (табл. 8.2).</p>
+            <p>Таблия 8.2 – Режими відкриття файлів</p>
+            <table border="1" width="85%" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <th width="10%">
+                        Режим
+                    </th>
+                    <th>
+                        Що означає
+                    </th>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        r
+                    </td>
+                    <td class="tab">
+                        Відкрити текстовий файл для читення
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        w
+                    </td>
+                    <td class="tab">
+                        Створити текстовий файл для запису
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        a
+                    </td>
+                    <td class="tab">
+                        Додати в кінець текстового файлу. Якщо файл не існує, то він буде створений. Всі нові дані, які
+                        записуються в нього, будуть додаватися в кінець файлу.
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        rb
+                    </td>
+                    <td class="tab">
+                        Відкрити&nbsp; двійковий файл для читання
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        wb
+                    </td>
+                    <td class="tab">
+                        &nbsp;Створити двійковий файл для запису
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        ab
+                    </td>
+                    <td class="tab">
+                        Додати в кінець двійкового файла
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        r+
+                    </td>
+                    <td class="tab">
+                        Відкрити&nbsp; текстовий файл для читання/запису. Вміст залишиться недоторканим. Якщо файлу не
+                        існує, то він створений не буде.
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        w+
+                    </td>
+                    <td class="tab">
+                        Створити текстовий файл для читання /запису. Якщо файл не існує, то він буде створений. Якщо
+                        файл вже існує, то відкриття призведе до втрати його вмісту, а в режимі r+ він залишиться
+                        недоторканим
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        a+
+                    </td>
+                    <td class="tab">
+                        Додати в кінець текстового файлу або створити його для читання/запису
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        r+b
+                    </td>
+                    <td class="tab">
+                        Відкрити&nbsp; двійковий файл для читання /запису
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        w+b
+                    </td>
+                    <td class="tab">
+                        Створити двійковий файл для читання /запису
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">
+                        a+b
+                    </td>
+                    <td class="tab">
+                        Додати в кінець двійкового файла або створити&nbsp; його для читання /запису
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="pidzag">Робота з файловими потоками</p>
+            <p>У мові С++ введення/виведення описується як набір класів, описаний в заголовному файлі&nbsp;&nbsp;<em>iostream.h.</em>&nbsp;Аналогами
+                потоків&nbsp;<em>stdin, stdout, stderr</em>&nbsp;є класи&nbsp;<em>cin,
+                    cout</em>&nbsp;і&nbsp;<em>cerr</em>. Ці три потоки відкриваються автоматично.
+                Потік&nbsp;<em>cin</em>&nbsp;пов'язаний з клавіатурою, а&nbsp;<em>cout</em>,&nbsp;<em>cerr</em>&nbsp;– з
+                дисплеєм.</p>
+            <p>Файл &lt;<em>fstream.h&gt;</em>&nbsp;визначає класи&nbsp;<em>ifstream</em>&nbsp;і&nbsp;<em>ofstream</em>,
+                за допомогою яких програма може виконувати операції файлового введення/виведення. Для відкриття файлу на
+                введення/виведення оголошують об'єкт типу&nbsp;<em>ifstream/</em>&nbsp;&nbsp;<em>ofstream</em>,
+                передаючи конструктору цього об'єкта ім'я необхідного файлу:</p>
+            <section class="mono_progr">
+                <p>&nbsp;&nbsp;<strong>ofstream</strong>&nbsp;myOutput ("FileOut.EXT");</p>
+                <p>&nbsp;&nbsp;<strong>ifstream</strong>&nbsp;myInput&nbsp;&nbsp;&nbsp; ("FileIn.EXT");</p>
+            </section>
+            <p>Після того, як програма відкрила файл для введення або виведення, вона може читати або писати дані,
+                використовуючи оператори: "<strong>&lt;&lt;</strong>" – для занесення (запису) в потік; "<strong>&gt;&gt;</strong>"
+                – для вилучення (читання) з потоку.</p>
+            <section class="mono_progr">
+                <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char word [64];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    while (!myInput.<strong>eof</strong>&nbsp;())<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myInput&nbsp;&gt;&gt; word;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    // зчитуэмо слово (до пробілу)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    cout &lt;&lt;word &lt;&lt;endl;&nbsp;&nbsp;&nbsp;&nbsp; // виводимо на екран</p>
+                <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; myOutput
+                    &lt;&lt; word; // записуємо у файл<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    }</p>
+            </section>
+            <p>Більшість програм читають вміст файлу, поки не зустрінеться&nbsp;<em>кінець файлу</em>. Визначити кінець
+                файлу можна за допомогою функції&nbsp;<strong><em>eof()</em>.</strong></p>
+            <p>Для введення або виведення&nbsp;<em>символів</em>&nbsp;у файл або з файлу використовую
+                функції&nbsp;<strong><em>get()</em></strong>&nbsp;і&nbsp;<strong><em>put()</em></strong><em>.</em></p>
+            <section class="mono_progr">
+                <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char letter;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    while (!myInput.eof ())<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp;&nbsp;&nbsp;&nbsp;
+                    letter = myInput.<strong>get</strong>(); // зчитуємо з файлу</p>
+                <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt;letter;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    // виводимо на екран</p>
+                <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; myOutput.<strong>put</strong>(letter);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    // записуємо у файл<br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+            </section>
+            <p>Для зчитування&nbsp;<em>цілого рядка</em>&nbsp;використовують
+                функцію&nbsp;<strong><em>getline()</em></strong>:</p>
+            <section class="mono_progr">
+                <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char line [80];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    while (!myInput.eof ())<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {&nbsp;&nbsp;&nbsp;&nbsp;
+                    myInput.<strong>getline</strong>&nbsp;(line,sizeof (line));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    cout &lt;&lt;line &lt;&lt;endl;</p>
+                <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+            </section>
+            <p>Для перевірки помилок можна використовувати функцію&nbsp;<strong><em>fail()</em></strong>:</p>
+            <section class="mono_progr">
+                <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+                    (myInput.<strong>fail</strong>&nbsp;())<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {&nbsp;&nbsp;&nbsp;&nbsp; cerr &lt;&lt;"Помилка відкриття FileIn.txt" &lt;&lt;endl;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    exit (1);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+            </section>
+            <p>Якщо програмам необхідно вводити або виводити такі дані, як структури або масиви, можна використовувати
+                методи&nbsp;<strong><em>read()</em></strong>&nbsp;і&nbsp;<strong><em>write()</em></strong>.</p>
+            <section class="mono_progr">
+                <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; myInput.<strong>read</strong>&nbsp;(buffer,
+                    sizeof (buffer));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    myOutput.<strong>write</strong>&nbsp;(buffer, sizeof (buffer));</p>
+            </section>
+            <p>Якщо програма завершила роботу з файлом, його слід закрити за допомогою
+                функції&nbsp;<strong><em>close()</em></strong>.</p>
+            <p>Для того, щоб операції введення/виведення виконувалися не з початку файлу, можна використовувати інші
+                режими відкриття файлів (табл. 8.3).</p>
+            <p>Таблиця 8.3 – Режими відкриття файлових потоків</p>
+            <table border="1" width="85%" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <th width="25%">
+                        Режим відкриття
+                    </th>
+                    <th>
+                        Призначення
+                    </th>
+                </tr>
+                <tr>
+                    <td class="tab" width="25%">
+                        <strong>ios::app</strong>
+                    </td>
+                    <td class="tab">
+                        Відкриває файл в режимі додавання, встановлюючи файловий покажчик на кінець файлу
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab" width="25%">
+                        <strong>ios::ate</strong>
+                    </td>
+                    <td class="tab">
+                        Встановлює файловий покажчик на кінець файлу
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab" width="25%">
+                        <strong>ios::in</strong>
+                    </td>
+                    <td class="tab">
+                        Вказує відкрити файл для введення.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab" width="25%">
+                        <strong>ios::nocreate</strong>
+                    </td>
+                    <td class="tab">
+                        Якщо й файл не існує, не створювати файл і повернути помилку
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab" width="25%">
+                        <strong>ios::noreplace</strong>
+                    </td>
+                    <td class="tab">
+                        Якщо файл існує, операція відкриття повинна бути перервана и повинна повернути помилку
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab" width="25%">
+                        <strong>ios::out</strong>
+                    </td>
+                    <td class="tab">
+                        Вказує відкрити файл для виведення.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab" width="25%">
+                        <strong>ios::trunc</strong>
+                    </td>
+                    <td class="tab">
+                        Перезаписує вміст існуючого файлу
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab" width="25%">
+                        <strong>ios::</strong><strong>binary</strong>
+                    </td>
+                    <td class="tab">
+                        Робота&nbsp;&nbsp;з файлом у двійковому вигляді
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p>Наприклад,</p>
+            <pre>&nbsp; &nbsp;&nbsp;ifstream myFile ("Filename.txt", ios::out | ios::noreplace);</pre>
+            <p>Для читання і запису даних будь-якого типу, тип яких може займати більше 1 байта, у файловій системі мови
+                С є дві функції:&nbsp;<strong><em>fread</em>()</strong>&nbsp;і&nbsp;<strong><em>fwrite</em>()</strong>.
+            </p>
+            <pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;<strong>fread</strong>(void&nbsp;*buf,size_t&nbsp;count,size_t&nbsp;k,FILE&nbsp;*pf);</pre>
+            <pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;<strong>fwrite</strong>(const&nbsp;void&nbsp;*buf,size_t&nbsp;count,size_t&nbsp;k,FILE&nbsp;*pf);</pre>
+            <p>Функція&nbsp;<em>fread</em>() повертає кількість прочитаних елементів. Якщо досягнуто кінець файлу або
+                сталася помилка, то повернуте значення може бути менше, ніж лічильник. А функція&nbsp;<em>fwrite</em>()
+                повертає кількість запи­саних елементів. Якщо помилки не було, то повернений результат буде дорівнює
+                значенню лічильник. Одним з найбільш корисних застосувань функцій&nbsp;<em>fread</em>() і&nbsp;<em>fwrite</em>()
+                є читання і запис даних користувача типів. Наприклад, якщо визначена структура</p>
+            <pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>struct</strong>&nbsp;struct_type&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;balance;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;name&nbsp;[80];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;Cust;<p></p>
+<p>то наступний оператор записує вміст&nbsp;<em>Сust</em>&nbsp;у файл, на який вказує&nbsp;<em>fp</em>:</p></pre>
+            <pre><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong><strong>fwrite</strong>&nbsp;(&amp;cust, sizeof (struct struct_type), 1, fp);</pre>
+            <p>В системі введення/виведення мови С є
+                функції&nbsp;<strong><em>fprintf()</em></strong>&nbsp;і&nbsp;<strong><em>fscanf()</em></strong>:</p>
+            <pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;<strong>fprintf</strong>&nbsp;(FILE * pf, const char *str, ...);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;<strong>fscanf</strong>&nbsp;(FILE&nbsp;*&nbsp;pf,&nbsp;const&nbsp;char&nbsp;*str, ...);</pre>
+            <p>&nbsp;</p>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small bg-blue fixed-bottom"
+        style="color: #FFFFFF; background-color: #343A40;">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="#"> AZayets</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

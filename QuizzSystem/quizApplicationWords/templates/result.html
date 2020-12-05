@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="https://raketaweb.ru/wp-content/themes/raketaweb/images/5bd05c447a923adabed9b2ee_logo-design20(2).png"
+             width="30" height="30"
+             class="d-inline-block align-top"
+             alt="">
+        ZayetsTests
+    </a>
+</nav>
+<div>
+    <div class="alert alert-success" role="alert">
+        <center><a href="/showAnswers/"><h3 style="color: #82AD8C">Your Score: {{score}}</h3></a></center>
+    </div>
+    <div>
+        <div class="text-center" style="margin-top: -10px; margin-bottom: 20px;">
+
+            <img src="https://www.meme-arsenal.com/memes/cae7af4eb7c5d84cd12f4295234cf4a4.jpg" class="rounded"
+                 alt="..."
+                 width="800" height="400">
+            <div class="alert alert-danger" role="alert"
+                 style="max-height: 400px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <center><a href="/showAnswers/"><h3 style="color: #82AD8C">Your Point: {{point}}</h3></a></center>
+            </div>
+        </div>
+    </div>
+    <button onclick="document.location='/'"
+            style="position: relative; left: 50%; transform: translate(-50%, 0);" type="button"
+            class="btn btn-secondary btn-lg">На главную
+    </button>
+</div>
+
+<footer class="page-footer font-small bg-blue fixed-bottom">
+    <footer class="page-footer font-small bg-blue fixed-bottom" style="color: #FFFFFF; background-color: #343A40;">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="#"> AZayets</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+</footer>
+</body>
+</html>
