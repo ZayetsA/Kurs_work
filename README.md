@@ -1,2 +1,4 @@
 # Kurs_work
-Rybakova Style
+Zayets Artem
+KM-18
+
